@@ -6,6 +6,7 @@ import { Doughnut, Bar } from 'react-chartjs-2';
 import { MainLayout } from '../components/layout';
 import { Card, CardHeader, CardTitle, CardContent, Badge, Spinner, Text } from '../components/base';
 import { dashboardService } from '../services';
+import { useAuth } from '../context';
 import { formatCurrency, formatDate } from '../utils/formatters';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
@@ -116,6 +117,7 @@ const LoadingWrapper = styled.div`
 `;
 
 const Dashboard = () => {
+  const { user } = useAuth();
   const [overview, setOverview] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [budgetStatus, setBudgetStatus] = useState([]);
@@ -123,11 +125,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!user?._id) return;
       try {
         const [overviewData, transactionsData, budgetData] = await Promise.all([
-          dashboardService.getOverview(),
-          dashboardService.getRecentTransactions(),
-          dashboardService.getBudgetStatus(),
+          dashboardService.getOverview(user._id),
+          dashboardService.getRecentTransactions(user._id),
+          dashboardService.getBudgetStatus(user._id),
         ]);
         setOverview(overviewData);
         setTransactions(transactionsData.transactions || []);
@@ -139,7 +142,7 @@ const Dashboard = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [user]);
 
   const doughnutData = {
     labels: budgetStatus.map((item) => item.category),

@@ -22,21 +22,18 @@ export const AuthProvider = ({ children }) => {
   // Check for existing token on mount
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
 
-    if (token && storedUser) {
+    if (token) {
       try {
         const decoded = jwtDecode(token);
         // Check if token is expired
         if (decoded.exp * 1000 > Date.now()) {
-          setUser(JSON.parse(storedUser));
+          setUser({ _id: decoded.id, username: decoded.username });
         } else {
           localStorage.removeItem('token');
-          localStorage.removeItem('user');
         }
       } catch {
         localStorage.removeItem('token');
-        localStorage.removeItem('user');
       }
     }
     setLoading(false);
@@ -48,9 +45,12 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       const data = await authService.login(email, password);
       
+      // Decode token to get user info (backend returns only token)
+      const decoded = jwtDecode(data.token);
+      const userData = { _id: decoded.id, username: decoded.username };
+      
       localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      setUser(data.user);
+      setUser(userData);
       navigate('/dashboard');
       return { success: true };
     } catch (err) {
@@ -66,11 +66,15 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       setLoading(true);
-      const data = await authService.register(username, email, password);
+      await authService.register(username, email, password);
       
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      setUser(data.user);
+      // Backend doesn't return token on register, so login after registration
+      const loginData = await authService.login(email, password);
+      const decoded = jwtDecode(loginData.token);
+      const userData = { _id: decoded.id, username: decoded.username };
+      
+      localStorage.setItem('token', loginData.token);
+      setUser(userData);
       navigate('/dashboard');
       return { success: true };
     } catch (err) {
@@ -84,7 +88,6 @@ export const AuthProvider = ({ children }) => {
 
   const logout = useCallback(() => {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
     setUser(null);
     navigate('/login');
   }, [navigate]);
