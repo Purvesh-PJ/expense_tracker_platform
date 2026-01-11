@@ -1,64 +1,88 @@
 // Theme Configuration for Expense Tracker
 const theme = {
-  // Color Palette
+  // Color Palette - Vibrant & Modern
   colors: {
-    // Primary
+    // Primary - Rich Indigo/Purple
     primary: {
-      50: '#E8F5E9',
-      100: '#C8E6C9',
-      200: '#A5D6A7',
-      300: '#81C784',
-      400: '#66BB6A',
-      500: '#4CAF50', // Main primary
-      600: '#43A047',
-      700: '#388E3C',
-      800: '#2E7D32',
-      900: '#1B5E20',
+      50: '#EEF2FF',
+      100: '#E0E7FF',
+      200: '#C7D2FE',
+      300: '#A5B4FC',
+      400: '#818CF8',
+      500: '#6366F1', // Main primary
+      600: '#4F46E5',
+      700: '#4338CA',
+      800: '#3730A3',
+      900: '#312E81',
     },
-    // Secondary (for expenses/alerts)
+    // Secondary - Vibrant Rose/Pink
     secondary: {
-      50: '#FFEBEE',
-      100: '#FFCDD2',
-      200: '#EF9A9A',
-      300: '#E57373',
-      400: '#EF5350',
-      500: '#F44336', // Main secondary
-      600: '#E53935',
-      700: '#D32F2F',
-      800: '#C62828',
-      900: '#B71C1C',
+      50: '#FFF1F2',
+      100: '#FFE4E6',
+      200: '#FECDD3',
+      300: '#FDA4AF',
+      400: '#FB7185',
+      500: '#F43F5E', // Main secondary
+      600: '#E11D48',
+      700: '#BE123C',
+      800: '#9F1239',
+      900: '#881337',
     },
-    // Neutral
+    // Accent - Teal/Cyan
+    accent: {
+      50: '#ECFEFF',
+      100: '#CFFAFE',
+      200: '#A5F3FC',
+      300: '#67E8F9',
+      400: '#22D3EE',
+      500: '#06B6D4',
+      600: '#0891B2',
+      700: '#0E7490',
+      800: '#155E75',
+      900: '#164E63',
+    },
+    // Neutral - Slate
     neutral: {
       0: '#FFFFFF',
-      50: '#FAFAFA',
-      100: '#F5F5F5',
-      200: '#EEEEEE',
-      300: '#E0E0E0',
-      400: '#BDBDBD',
-      500: '#9E9E9E',
-      600: '#757575',
-      700: '#616161',
-      800: '#424242',
-      900: '#212121',
+      50: '#F8FAFC',
+      100: '#F1F5F9',
+      200: '#E2E8F0',
+      300: '#CBD5E1',
+      400: '#94A3B8',
+      500: '#64748B',
+      600: '#475569',
+      700: '#334155',
+      800: '#1E293B',
+      900: '#0F172A',
     },
-    // Semantic
-    success: '#4CAF50',
-    warning: '#FF9800',
-    error: '#F44336',
-    info: '#2196F3',
+    // Semantic - Vibrant
+    success: '#10B981', // Emerald
+    warning: '#F59E0B', // Amber
+    error: '#EF4444',   // Red
+    info: '#3B82F6',    // Blue
+    // Income/Expense specific
+    income: '#10B981',  // Emerald green
+    expense: '#F43F5E', // Rose red
     // Background
     background: {
       primary: '#FFFFFF',
-      secondary: '#F5F7FA',
-      tertiary: '#E8ECF0',
+      secondary: '#F8FAFC',
+      tertiary: '#F1F5F9',
+      dark: '#0F172A',
     },
     // Text
     text: {
-      primary: '#212121',
-      secondary: '#616161',
-      disabled: '#9E9E9E',
+      primary: '#0F172A',
+      secondary: '#475569',
+      disabled: '#94A3B8',
       inverse: '#FFFFFF',
+    },
+    // Gradients
+    gradients: {
+      primary: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)',
+      success: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)',
+      danger: 'linear-gradient(135deg, #F43F5E 0%, #FB7185 100%)',
+      dark: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
     },
   },
 
@@ -66,7 +90,7 @@ const theme = {
   typography: {
     fontFamily: {
       primary: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-      mono: "'Fira Code', 'Consolas', monospace",
+      mono: "'JetBrains Mono', 'Fira Code', monospace",
     },
     fontWeight: {
       regular: 400,
@@ -75,14 +99,14 @@ const theme = {
       bold: 700,
     },
     fontSize: {
-      xs: '0.75rem',    // 12px
-      sm: '0.875rem',   // 14px
-      base: '1rem',     // 16px
-      lg: '1.125rem',   // 18px
-      xl: '1.25rem',    // 20px
-      '2xl': '1.5rem',  // 24px
-      '3xl': '1.875rem', // 30px
-      '4xl': '2.25rem', // 36px
+      xs: '0.75rem',
+      sm: '0.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
+      '2xl': '1.5rem',
+      '3xl': '1.875rem',
+      '4xl': '2.25rem',
     },
     lineHeight: {
       tight: 1.25,
@@ -91,38 +115,41 @@ const theme = {
     },
   },
 
-  // Spacing (4px base unit)
+  // Spacing
   spacing: {
     0: '0',
-    1: '0.25rem',  // 4px
-    2: '0.5rem',   // 8px
-    3: '0.75rem',  // 12px
-    4: '1rem',     // 16px
-    5: '1.25rem',  // 20px
-    6: '1.5rem',   // 24px
-    8: '2rem',     // 32px
-    10: '2.5rem',  // 40px
-    12: '3rem',    // 48px
-    16: '4rem',    // 64px
+    1: '0.25rem',
+    2: '0.5rem',
+    3: '0.75rem',
+    4: '1rem',
+    5: '1.25rem',
+    6: '1.5rem',
+    8: '2rem',
+    10: '2.5rem',
+    12: '3rem',
+    16: '4rem',
   },
 
   // Border Radius
   borderRadius: {
     none: '0',
-    sm: '0.25rem',   // 4px
-    md: '0.5rem',    // 8px
-    lg: '0.75rem',   // 12px
-    xl: '1rem',      // 16px
+    sm: '0.375rem',
+    md: '0.5rem',
+    lg: '0.75rem',
+    xl: '1rem',
+    '2xl': '1.5rem',
     full: '9999px',
   },
 
-  // Shadows
+  // Shadows - More depth
   shadows: {
     none: 'none',
     sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
+    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+    glow: '0 0 20px rgba(99, 102, 241, 0.3)',
+    card: '0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)',
   },
 
   // Transitions

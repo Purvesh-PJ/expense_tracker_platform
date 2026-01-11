@@ -8,21 +8,21 @@ const LayoutWrapper = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
-  margin-left: 240px;
-  padding: ${({ theme }) => theme.spacing[6]};
+  margin-left: 260px;
+  padding: ${({ theme }) => theme.spacing[8]};
   background-color: ${({ theme }) => theme.colors.background.secondary};
   min-height: 100vh;
 `;
 
 const PageHeader = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing[6]};
+  margin-bottom: ${({ theme }) => theme.spacing[8]};
 `;
 
 const PageTitle = styled.h1`
-  font-size: ${({ theme }) => theme.typography.fontSize['2xl']};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  font-size: ${({ theme }) => theme.typography.fontSize['3xl']};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   color: ${({ theme }) => theme.colors.text.primary};
-  margin: 0 0 ${({ theme }) => theme.spacing[1]} 0;
+  margin: 0 0 ${({ theme }) => theme.spacing[2]} 0;
 `;
 
 const PageSubtitle = styled.p`

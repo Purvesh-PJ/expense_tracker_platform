@@ -2,34 +2,49 @@ import styled, { css } from 'styled-components';
 
 const variants = {
   primary: css`
-    background-color: ${({ theme }) => theme.colors.primary[500]};
+    background: ${({ theme }) => theme.colors.gradients.primary};
     color: ${({ theme }) => theme.colors.text.inverse};
     border: none;
+    box-shadow: 0 2px 4px rgba(99, 102, 241, 0.3);
 
     &:hover:not(:disabled) {
-      background-color: ${({ theme }) => theme.colors.primary[600]};
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
     }
 
     &:active:not(:disabled) {
-      background-color: ${({ theme }) => theme.colors.primary[700]};
+      transform: translateY(0);
     }
   `,
   secondary: css`
     background-color: transparent;
     color: ${({ theme }) => theme.colors.primary[600]};
-    border: 1px solid ${({ theme }) => theme.colors.primary[500]};
+    border: 2px solid ${({ theme }) => theme.colors.primary[500]};
 
     &:hover:not(:disabled) {
       background-color: ${({ theme }) => theme.colors.primary[50]};
     }
   `,
   danger: css`
-    background-color: ${({ theme }) => theme.colors.secondary[500]};
+    background: ${({ theme }) => theme.colors.gradients.danger};
     color: ${({ theme }) => theme.colors.text.inverse};
     border: none;
+    box-shadow: 0 2px 4px rgba(244, 63, 94, 0.3);
 
     &:hover:not(:disabled) {
-      background-color: ${({ theme }) => theme.colors.secondary[600]};
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.4);
+    }
+  `,
+  success: css`
+    background: ${({ theme }) => theme.colors.gradients.success};
+    color: ${({ theme }) => theme.colors.text.inverse};
+    border: none;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
     }
   `,
   ghost: css`
@@ -64,8 +79,8 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   gap: ${({ theme }) => theme.spacing[2]};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
   transition: all ${({ theme }) => theme.transitions.fast};
   cursor: pointer;
   white-space: nowrap;
@@ -82,6 +97,7 @@ const Button = styled.button`
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    transform: none !important;
   }
 
   &:focus-visible {
