@@ -1,9 +1,12 @@
 import api from './api';
 
 export const incomeService = {
+  // Route is /:userId but controller uses req.userId from JWT
+  // We pass userId in URL to match route, but actual auth is from token
   async getAll(userId) {
     const response = await api.get(`/income/${userId}`);
-    return response.data;
+    // Backend returns array directly, not { incomes: [] }
+    return { incomes: response.data };
   },
 
   async create(data) {
