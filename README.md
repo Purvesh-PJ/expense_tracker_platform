@@ -1,89 +1,149 @@
-# Expense Tracker Platform
+<div align="center">
 
-A full-stack expense and income tracking app with JWT authentication, charts, and dashboards. The project is split into a React client and an Express + MongoDB server.
+# 💰 Expense Tracker
 
-## Features
-- User registration and login with JWT
-- Create, read, update, and delete income entries
-- Create, read, update, and delete expense entries
-- Dashboard views and charts for quick insights
+### Take Control of Your Finances
 
-## Tech Stack
-- Frontend: React, React Router, Styled Components, Chart.js
-- Backend: Node.js, Express, Mongoose, JWT, bcrypt
-- Database: MongoDB
-- Tooling: npm, nodemon
+A modern, full-stack expense tracking application with beautiful UI and powerful analytics.
 
-## Project Structure
-- `client/` React application
-- `server/` Express API and MongoDB models
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
+[![Styled Components](https://img.shields.io/badge/Styled_Components-6.1-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)](https://styled-components.com/)
 
-## Prerequisites
-- Node.js (LTS recommended) and npm
-- MongoDB running locally on `mongodb://localhost:27017`
+<br />
 
-## Installation
-1. Clone the repository and move into the project:
-   ```bash
-   git clone https://github.com/Purvesh-PJ/expense_tracker_platform.git
-   cd expense_tracker_platform
-   ```
-2. Install server dependencies:
-   ```bash
-   cd server
-   npm install
-   ```
-3. Install client dependencies:
-   ```bash
-   cd ../client
-   npm install
-   ```
+![Dashboard Preview](client/public/screenshots/dashboard.png)
 
-## Run Locally
-1. Start MongoDB if it is not running.
-2. Start the server:
-   ```bash
-   cd server
-   npm run dev
-   ```
-   The server runs on `http://localhost:5000` by default.
-3. Start the client in another terminal:
-   ```bash
-   cd client
-   npm start
-   ```
-4. Open `http://localhost:3000` in your browser.
+</div>
 
-## Configuration
-- Server port: set `PORT` to override the default `5000`.
-- MongoDB URI: update `server/config/db.js` if you do not use the local default.
-- Client API base URL for expenses: `client/src/services/ExpenseService.js`
-- Client API base URL for income: `client/src/services/IncomeService.js`
-- Client API base URL for dashboard: `client/src/services/DashboardService.js`
-- CORS origin is set to `http://localhost:3000` in `server/server.js`.
+---
 
-## API Overview
-All `/expenses` and `/income` routes require `Authorization: Bearer <token>`.
+## ⚡ Quick Overview
 
-| Area     | Method | Endpoint                | Auth |
-|----------|--------|-------------------------|------|
-| Users    | POST   | `/users/register`       | No   |
-| Users    | POST   | `/users/login`          | No   |
-| Expenses | POST   | `/expenses/add`         | Yes  |
-| Expenses | GET    | `/expenses/:userId`     | Yes  |
-| Expenses | PUT    | `/expenses/edit/:id`    | Yes  |
-| Expenses | DELETE | `/expenses/delete/:id`  | Yes  |
-| Income   | POST   | `/income/add`           | Yes  |
-| Income   | GET    | `/income/:userId`       | Yes  |
-| Income   | PUT    | `/income/:id`           | Yes  |
-| Income   | DELETE | `/income/:id`           | Yes  |
+<table>
+<tr>
+<td width="50%">
 
-## Scripts
-Server:
-- `npm run dev` - start server with nodemon
-- `npm start` - start server with node
+### 🎯 What it does
 
-Client:
-- `npm start` - start React dev server
-- `npm run build` - build for production
-- `npm test` - run tests
+- Track **income** from multiple sources
+- Monitor **expenses** by category  
+- Visualize spending with **interactive charts**
+- View **real-time balance** updates
+- Secure **JWT authentication**
+
+</td>
+<td width="50%">
+
+### 🛠️ Built with
+
+- **Frontend:** React, Styled Components, Chart.js
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB with Mongoose
+- **Auth:** JWT tokens
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📸 Screenshots
+
+<div align="center">
+<table>
+<tr>
+<td width="50%" align="center">
+<img src="client/public/screenshots/login.png" alt="Login" />
+<br />
+<strong>🔐 Login</strong>
+</td>
+<td width="50%" align="center">
+<img src="client/public/screenshots/signup.png" alt="Sign Up" />
+<br />
+<strong>📝 Sign Up</strong>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<img src="client/public/screenshots/income.png" alt="Income" />
+<br />
+<strong>💵 Income Management</strong>
+</td>
+<td width="50%" align="center">
+<img src="client/public/screenshots/expenses.png" alt="Expenses" />
+<br />
+<strong>💳 Expense Tracking</strong>
+</td>
+</tr>
+</table>
+</div>
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/yourusername/expense_tracker_platform.git
+
+# Install dependencies
+cd server && npm install
+cd ../client && npm install
+
+# Start backend (terminal 1)
+cd server && npm start
+
+# Start frontend (terminal 2)
+cd client && npm start
+```
+
+> 📍 App runs at `http://localhost:3000` | API at `http://localhost:5000`
+
+---
+
+## 📁 Project Structure
+
+```
+📦 expense_tracker_platform
+├── 🎨 client/                # React Frontend
+│   └── src/
+│       ├── components/       # UI Components
+│       ├── pages/            # Page Views
+│       ├── services/         # API Calls
+│       └── styles/           # Theme System
+│
+└── ⚙️ server/                # Node.js Backend
+    ├── controllers/          # Business Logic
+    ├── models/               # Data Models
+    ├── routes/               # API Routes
+    └── middleware/           # Auth Layer
+```
+
+---
+
+## 🔌 API Reference
+
+| Method | Endpoint | Description |
+|:------:|----------|-------------|
+| `POST` | `/users/register` | Create account |
+| `POST` | `/users/login` | Sign in |
+| `GET` | `/income/:userId` | Fetch income |
+| `POST` | `/income/add` | Add income |
+| `PUT` | `/income/:id` | Update income |
+| `DELETE` | `/income/:id` | Remove income |
+| `GET` | `/expenses/:userId` | Fetch expenses |
+| `POST` | `/expenses/add` | Add expense |
+| `PUT` | `/expenses/edit/:id` | Update expense |
+| `DELETE` | `/expenses/delete/:id` | Remove expense |
+
+---
+
+<div align="center">
+
+### 🌟 Star this repo if you found it helpful!
+
+Made with ❤️ and lots of ☕
+
+</div>
